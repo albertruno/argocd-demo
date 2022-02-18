@@ -14,7 +14,7 @@ spec:
   project: default
   source:
     path: nginx-chart
-    repoURL: 'https://github.com/kanuahs/argocd-demo.git'
+    repoURL: 'https://github.com/albertruno/argocd-demo.git'
     targetRevision: {{ .apps.sampleApp.branch }}
   syncPolicy:
     automated:
