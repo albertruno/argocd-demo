@@ -14,7 +14,7 @@ clusters:
       enabled: true
       branch: HEAD
 
-    nginxApp:
+    wordpressApp:
       enabled: true
       branch: HEAD
 
