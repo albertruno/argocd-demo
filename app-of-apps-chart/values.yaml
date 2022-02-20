@@ -10,12 +10,20 @@ clusters:
       enabled: true
       branch: HEAD
 
-- name: gke
-  destinationServer:  https://EFD0D413B7FF216111BA4AD656EBA71F.gr7.us-east-1.eks.amazonaws.com
-  apps:
-    prometheus:
-      enabled: true
-      version: "9.7.4"
-    sampleApp:
+    guestBookApp:
       enabled: true
       branch: HEAD
+
+    nginxApp:
+      enabled: true
+      branch: HEAD
+
+#- name: gke
+#  destinationServer:  https://EFD0D413B7FF216111BA4AD656EBA71F.gr7.us-east-1.eks.amazonaws.com
+#  apps:
+#    prometheus:
+#      enabled: true
+#      version: "9.7.4"
+#    sampleApp:
+#      enabled: true
+#      branch: HEAD
