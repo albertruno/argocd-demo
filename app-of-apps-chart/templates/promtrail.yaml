@@ -1,0 +1,29 @@
+{{- range .Values.clusters }}
+{{- if .apps.promtrail.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{printf "%s-%s" .name "promtrail"}}          # Name of ArgoCD application CR
+  namespace: argocd                                   # Namespace in which argocd is deployed
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default                                # Namespace in which promtail is deployed
+    server: {{ .destinationServer }}
+  project: default
+  source:
+    chart: promtail                                   # Using the promtail helm chart from grafana helm registry
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: {{ .apps.promtrail.version }}    # Promatail chart version
+    helm:
+      values: |
+        config:
+          lokiAddress: http://loki-gateway.default/loki/api/v1/push   # FQDN of loki-gateway's push endpoint
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}
+---
+{{- end }}
